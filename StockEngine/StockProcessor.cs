@@ -14,15 +14,9 @@ namespace StockEngine
         private IStockRepository _stockRepository = new StockRepository();
         public void StartProcess(List<string> sources)
         {
-            Dictionary<string, IProcessor> keyValuePairs = new Dictionary<string, IProcessor>()
-            {
-                ["csv"] = new CsvProcessor(_stockRepository),
-                ["json"] = new JsonProcessor(_stockRepository),
-            };
 
             Dictionary<string, IProcessor> stockProcessors = MatchProcessors(sources);
 
-            var x = TimeSpan.FromSeconds(20).TotalMilliseconds;
 
             foreach (var item in stockProcessors)
             {
